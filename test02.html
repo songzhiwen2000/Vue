@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>组件练习1</title>
+    <title>组件练习2</title>
     <script src="js/vue.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -14,7 +17,8 @@
         <input v-model="data" type="text" />
         <button @click="changeInfo">提交</button>
         <ul>
-            <todo-item :content="item" v-for="(item, index) in list" :key="index"></todo-item>
+            <todo-item :content="item" @delete="handleDelete" v-for="(item, index) in list" :key="index" :index="index">
+            </todo-item>
         </ul>
     </div>
     <script>
@@ -27,8 +31,13 @@
 
         //定义局部组件
         var TodoItem = {
-            props: ['content'],//组件接收外部数据
-            template: "<li>{{content}}</li>"//定义模板标签
+            props: ['content', 'index'],//组件接收外部数据
+            template: "<li @click='deleteItem'>{{content}}</li>",//定义模板标签
+            methods: {
+                deleteItem() {
+                    this.$emit('delete', this.index);
+                }
+            },
         };
         var app = new Vue({
             el: "#app",
@@ -45,6 +54,9 @@
                 changeInfo() {
                     this.list.push(this.data);
                     this.data = "";
+                },
+                handleDelete(index) {
+                    this.list.splice(index, 1);
                 }
             },
         });
