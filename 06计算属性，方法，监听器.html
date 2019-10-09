@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{fullName}}
+        {{age}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    fn:"张",
+                    sn:"三",
+                    fullName:"张三",//watch用到
+                    age:28
+                }
+            },
+            /* computed: { //计算属性,内置缓存
+                fullName:function(){
+                    console.log("计算一次");
+                    return this.fn+this.sn;
+                }
+            }, */
+           
+            watch: {//监听，也具有缓存机制
+                fn:function(){
+                    console.log("计算一次");
+                    this.fullName = this.fn+this.sn;
+                },
+                sn:function(){
+                    console.log("计算一次");
+                    this.fullName=this.fn+this.sn;
+                }
+            },
+             /* 当监听和计算属性都能解决同一个问题时，建议使用计算属性,因为代码简单 */
+        })
+    </script>
+</body>
+
+</html>
