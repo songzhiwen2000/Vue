@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue实例</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">{{message}}</div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    message: "你好"
+                }
+            },
+            beforeCreate() {
+                console.log("创建之前");
+            },
+            created() {
+                console.log("创建完毕");
+            },
+            beforeMount() {
+                console.log(this.$el)
+                console.log("准备渲染");
+            },
+            mounted() {
+                console.log(this.$el)
+                console.log("渲染完毕");
+            },
+            beforeUpdate() {
+                console.log(this.$el);
+                console.log("更新之前");
+            },
+            updated() {
+                console.log(this.$el);
+                console.log("更新之后");
+            },
+            beforeDestroy() {
+                console.log(this.$el);
+                console.log("销毁之前");
+            },
+            destroyed() {
+                console.log(this.$el);
+                console.log("销毁之后");
+            },
+        });
+    </script>
+</body>
+
+</html>
