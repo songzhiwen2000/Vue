@@ -16,7 +16,8 @@
 
 <body>
     <div id="app">
-        <div @click="changeColor" :class="[activated]">{{message}}</div>
+        <!-- <div @click="changeColor" :class="[activated]">{{message}}</div> -->
+        <div @click="changeColor" :style="styleObj">{{message}}</div>
     </div>
     <script>
         var vm = new Vue({
@@ -24,12 +25,15 @@
             data() {
                 return {
                     message: "中国",
-                    activated: ""
+                    activated: "",
+                    styleObj: {
+                        color: "red"
+                    }
                 }
             },
             methods: {
                 changeColor() {
-                    this.activated = this.activated == "" ? "activated" : "";
+                    this.styleObj.color = this.styleObj.color === "red" ? "black" : "red";
                 }
             },
         });
