@@ -12,7 +12,10 @@
 
 <body>
     <div id="app">
-        <div>{{message}}</div>
+        <input type="text" v-model="myValue"><button @click="handleButtonClick">提交</button>
+        <ul>
+            <li v-for="(item, index) in list" :key="index">{{item}}</li>
+        </ul>
     </div>
 </body>
 
@@ -20,12 +23,16 @@
 <script>
     var x = new Vue({
         el: "#app",
-        data: {
-            message: "<div style='color:#a23121;'>你好,中国</div>"
+        data() {
+            return {
+                list: [],
+                myValue: ""
+            }
         },
         methods: {
-            test() {
-
+            handleButtonClick() {
+                this.list.push(this.myValue);
+                this.myValue = "";
             }
         },
     })
