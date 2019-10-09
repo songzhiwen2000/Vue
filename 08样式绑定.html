@@ -17,7 +17,7 @@
 <body>
     <div id="app">
         <!-- <div @click="changeColor" :class="[activated]">{{message}}</div> -->
-        <div @click="changeColor" :style="styleObj">{{message}}</div>
+        <div @click="changeColor" :style="[styleObj,{fontSize:'20px'}]">{{message}}</div>
     </div>
     <script>
         var vm = new Vue({
