@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--  引入jQuery文件  -->
+    <script src="./js/jquery.min.js"></script>
+    <!--  引入MD5加密文件  -->
+    <script src="./js/jQuery.md5.js"></script>
+    <!--  引入SIGN算法文件  -->
+    <script src="./js/sign.js"></script>
+
+    <script type="text/javascript">
+        function show() {
+            var token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4YThhYjBiMjQ2ZGM4MTEyMDE0NmRjODE4MTk1MDA1MiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNTcwNjk2NDIwfQ.zY5HO8qxI2zEhCwYnDkm7AuwTKi39kYWqW7DatWJjLA";
+            var date = new Date();
+            var timeStamp = date.getTime().toString();
+            var sign = getSignByToken(token, timeStamp);
+            /* $.ajax(
+                {
+                    headers: {
+                        "X-AUTH-TOKEN": token,
+                        "TIMESTAMP": timeStamp,
+                        "SIGN": sign
+                    },
+                    type: "get",
+                    dataType: 'jsonp',
+                    jsonp: "callback",
+                    jsonpCallback: "callback_success",
+                    url: "http://localhost:8080/rest/apiController?getData&type=watertank_temp&deviceId=21&docNum=1&callback=showInfo",
+                }
+            ) */
+            $("#date").html(timeStamp);
+            $("#sign").html(sign);
+        }
+    </script>
+
+</head>
+
+<body>
+    <button onclick="show()">显示信息</button>
+    <div id="date"></div>
+    <div id="sign"></div>
+</body>
+
+</html>
