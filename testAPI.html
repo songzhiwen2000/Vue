@@ -19,22 +19,24 @@
             var date = new Date();
             var timeStamp = date.getTime().toString();
             var sign = getSignByToken(token, timeStamp);
-            /* $.ajax(
+            document.write(timeStamp + "<br>" + sign + "<br>");
+            $.ajax(
                 {
-                    headers: {
-                        "X-AUTH-TOKEN": token,
-                        "TIMESTAMP": timeStamp,
-                        "SIGN": sign
-                    },
+                    url: "http://172.20.12.77:8080/rest/apiController?getData&type=watertank_temp&deviceId=21&docNum=1",
                     type: "get",
                     dataType: 'jsonp',
-                    jsonp: "callback",
-                    jsonpCallback: "callback_success",
-                    url: "http://localhost:8080/rest/apiController?getData&type=watertank_temp&deviceId=21&docNum=1&callback=showInfo",
+                    jsonp: 'mycallback',
+                    jsonpCallback: 'callbackFun',
+                    success: function (data) {
+                        console.log(data);
+                    }
                 }
-            ) */
-            $("#date").html(timeStamp);
-            $("#sign").html(sign);
+            )
+
+        }
+
+        function callbackFun(data) {
+
         }
     </script>
 
