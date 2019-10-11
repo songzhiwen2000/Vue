@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <template v-for="(item, index) in list" ::key="item.id">
+            <div>{{item.name}}----{{index}}</div>
+            <span>{{item.name}}</span>
+        </template>
+        <hr>
+        <template v-for="item in userInfo">
+            <div>{{item}}</div>
+        </template>
+        <hr>
+        <template v-for="(item,key,index) in userInfo">
+            <div>
+                {{item}}---{{key}}---{{index}}
+            </div>
+        </template>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    list: [
+                        {id: "001", name: "张三"},
+                        {id: "002", name: "李四"},
+                        {id: "003", name: "王五"},
+                    ],
+                    userInfo: {
+                        name: "张三",
+                        age: 20,
+                        gender: "male"
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
