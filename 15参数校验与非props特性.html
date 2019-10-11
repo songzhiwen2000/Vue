@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 
+            传递字符串数据时，不加冒号  :
+        
+            传递数字类型时，需要加 -->
+        <child content="你好1234"></child>
+    </div>
+
+
+    <script>
+        Vue.component('child', {
+            props: {
+                /*content: Number,//要求父组件传递过来的数据必须是数字*/
+                /* content: [Number, String]//可以是数字，可以是字符串 */
+                content: {
+                    type: String,//必须是字符串
+                    required: false,//是否必须传值
+                    default: "默认值",//不传值时的默认显示数据
+                    validator: function (value) {
+                        return value.length > 5;
+                    }
+                }
+            },
+            template: "<div>{{content}}</div>"
+        });
+        var vm = new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+
+</html>
