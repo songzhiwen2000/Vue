@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <!-- 定义插槽 -->
+            <!-- <p>
+                DELL
+            </p> -->
+        </child>
+        <hr>
+        <mycontent>
+            <div class="header" slot="header">Header</div>
+            <!-- <div class="footer" slot="footer">Footer</div> -->
+        </mycontent>
+    </div>
+    <script>
+        var child = {
+            //slot调用插槽
+            template: `<div>
+                        <p>你好</p>
+                        <slot>默认内容</slot>
+                       </div>`
+        }
+        var mycontent = {
+            template: `
+                <div>
+                    <slot name="header">具名插槽(slot)</slot>
+                    <div class="mycontent">mycontent</div>
+                    <slot name="footer"><h1>可以给插槽设定默认值</h1></slot>
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el: "#app",
+            components: {
+                child: child,
+                mycontent: mycontent
+            },
+        });
+    </script>
+</body>
+
+</html>
