@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 在事件后，加上 .native 修饰符就可以直接触发原生事件，而非自定义事件 -->
+        <child content="dell"></child>
+        <child content="lenovo"></child>
+    </div>
+
+
+    <script>
+        Vue.prototype.bus = new Vue();
+
+        Vue.component("child", {
+            props: ["content"],
+            data() {
+                return {
+                    info: this.content
+                }
+            },
+            template: "<div @click='childClick'>{{info}}</div>",
+            methods: {
+                childClick() {
+                    this.bus.$emit('change', this.info);
+                }
+            },
+            mounted() {
+                var this_ = this;
+                this.bus.$on('change', function (msg) {
+                    this_.info = msg;
+                })
+            },
+        });
+
+        var vm = new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+
+</html>
