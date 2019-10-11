@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/animate.css">
     <script src="./js/vue.js"></script>
     <style>
-        @keyframes bounce-in {
+        /* @keyframes bounce-in {
             0% {
                 transform: scale(0);
             }
@@ -20,11 +21,10 @@
             100% {
                 transform: scale(1);
             }
-        }
+        } */
 
-        .fade-enter-active,
+        /* .fade-enter-active,
         .enter {
-            /* 不加的话，动画有问题 */
             transform-origin: left center;
             animation: bounce-in 1s;
         }
@@ -33,7 +33,7 @@
         .leave {
             transform-origin: left center;
             animation: bounce-in 1s reverse;
-        }
+        } */
     </style>
 </head>
 
@@ -42,9 +42,13 @@
         <!-- <transition name="fade" enter-active-class="enter" leave-active-class="leave">
             <div v-show="show">显示和隐藏</div>
         </transition> -->
-        <transition name="fade" enter-active-class="enter" leave-active-class="leave">
+
+
+        <!-- 使用animate.css库，必须自定义样式，第一个必须写animated，然后追加其他样式 -->
+        <transition name="fade" enter-active-class="animated swing" leave-active-class="animated shake">
             <div v-show="show">显示和隐藏</div>
         </transition>
+
         <button @click="handleClick">点击</button>
     </div>
 
