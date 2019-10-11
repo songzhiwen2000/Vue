@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <!-- 作用域插槽 -->
+            <template slot-scope="props">
+                <li>{{props.aaa}}---测试</li>
+            </template>
+        </child>
+    </div>
+
+
+    <script>
+        Vue.component("child", {
+            data() {
+                return {
+                    list: [1, 2, 3, 4]
+                }
+            },
+            template: `
+            <div>
+                <ul>
+                    <slot v-for="item in list"
+                            :aaa="item"
+                    >:aaa="item"是告诉父组件，我给你传数据了，数据存放在aaa中</slot>
+                </ul>
+            </div>
+            `
+        });
+
+
+        var vm = new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+
+</html>
