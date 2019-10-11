@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- transition中如果加上name,name样式表中，就要将 v 换成 name的值 -->
+        <transition>
+            <div v-show="show">显示和隐藏</div>
+        </transition>
+        <button @click="handleClick">点击</button>
+    </div>
+
+    <script>
+        Vue.component("child", {
+            props: [],
+            data() {
+                return {
+
+                }
+            },
+            template: "<div>模板</div>",
+            methods: {
+                childMethod() {
+
+                }
+            },
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick() {
+                    this.show = !this.show
+                }
+            },
+            mounted() {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
