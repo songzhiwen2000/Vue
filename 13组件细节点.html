@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- is让tr变成row模板 -->
+        <!-- <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table> -->
+        <!-- <div ref="hello" @click="handleClick">你好</div> -->
+        <counter ref="num1" @change="handleChange"></counter>
+        <counter ref="num2" @change="handleChange"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+        Vue.component("row", {
+            data() {//子组件中，data必须是函数，不可以是对象
+                return {
+                    content: '中国'
+                }
+            },
+            template: '<tr><td>{{content}}</td></tr>'
+        });
+        Vue.component("counter", {
+            data() {
+                return {
+                    number: 0
+                }
+            },
+            template: "<div @click='handleClick222'>{{number}}</div>",
+            methods: {
+                handleClick222() {
+                    this.number++;
+                    this.$emit('change')
+                }
+            },
+        })
+        //在vue中，尽量不操作dom，但是必须操作时，可以用到ref
+        //ref可以加在标签上，可以加在组件上
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    total: 0
+                }
+            },
+            methods: {
+                handleClick() {
+                    console.log(this.$refs.hello.innerHTML);
+                },
+                handleChange() {
+                    this.total = this.$refs.num1.number + this.$refs.num2.number
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
