@@ -24,11 +24,11 @@
             props: {
                 /*content: Number,//要求父组件传递过来的数据必须是数字*/
                 /* content: [Number, String]//可以是数字，可以是字符串 */
-                content: {
+                content: {//content与组件的属性是对应的，所以叫props特性
                     type: String,//必须是字符串
                     required: false,//是否必须传值
                     default: "默认值",//不传值时的默认显示数据
-                    validator: function (value) {
+                    validator: function (value) {//自定义校验
                         return value.length > 5;
                     }
                 }
