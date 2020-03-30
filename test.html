@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>EasyNVR</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 </head>
 <body>
-$END$
+<button id="btn1">登录</button>
+<button id="btn2">退出</button>
+<button id="btn3">测试鉴权</button>
+<p id="data"></p>
 </body>
+<!-- 引入jquery插件 -->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<!-- 引入md5加密插件 -->
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+    //定义变量来存放软件服务的IP和端口
+    var httpStr = "http://117.159.8.16:16664"
+    $(document).ready(function () {
+        var userName = 'easynvr',             //用户名
+            passWord = 'easynvr'              //原始密码
+        passWordHash = md5(passWord);   //加密后密码
+
+        //当点击登录会向服务端发送登录请求
+        $("#btn1").click(function () {
+            //请求登录接口带上用户名和加密后的密码
+            $.get(httpStr + "/api/v1/login?username=" + userName + "&password=" + passWordHash, function (data, status) {
+                if (data.EasyDarwin.Header.ErrorNum === "200") {
+                    $("#data").text('鉴权成功！服务端返回的token为：' + data.EasyDarwin.Body.Token + " 过期时间为：" + data.EasyDarwin.Body.TokenTimeout)
+                } else {
+                    $("#data").text('鉴权失败！状态码为：' + data.EasyDarwin.Header.ErrorNum)
+                }
+            });
+        });
+        //当点击退出会向服务端发送登录请求
+        $("#btn2").click(function () {
+            $.get(httpStr + "/api/v1/logout", function (data, status) {
+                if (data.EasyDarwin.Header.ErrorNum === "200") {
+                    $("#data").text('退出成功！')
+                }
+            });
+        });
+        //当登录成功后点击测试按钮是否鉴权成功
+        $("#btn3").click(function () {
+            $.get(httpStr + "/api/v1/getchannels", {
+                withCredentials: true,
+                crossDomain: true
+            }, function (data, status) {
+                console.log(data)
+                if (data.EasyDarwin.Header.ErrorNum === "200") {
+                    $("#data").text("通道名称:" + data.EasyDarwin.Body.Channels[0].Name)
+                } else {
+                    $("#data").text('鉴权失败' + data)
+                }
+            });
+        });
+
+    });
+</script>
 </html>
