@@ -10,41 +10,41 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- <child1 v-if="type==='child1'"></child1>
-        <child2 v-if="type==='child2'"></child2> -->
-        <!-- 动态组件,根据 :is 中的内容，自动切换组件 -->
-        <!-- <component :is="type"></component> -->
+<div id="app">
+    <!-- <child1 v-if="type==='child1'"></child1>
+    <child2 v-if="type==='child2'"></child2> -->
+    <!-- 动态组件,根据 :is 中的内容，自动切换组件 -->
+    <!-- <component :is="type"></component> -->
 
-        <child1 v-if="type==='child1'"></child1>
-        <child2 v-if="type==='child2'"></child2>
-        <button @click="btnClick">change</button>
-    </div>
+    <child1 v-if="type==='child1'"></child1>
+    <child2 v-if="type==='child2'"></child2>
+    <button @click="btnClick">change</button>
+</div>
 
 
-    <script>
-        Vue.component("child1", {
-            //v-once可以将内容放到缓存中，而不是销毁再创建，可以提高性能
-            template: "<div v-once>child-1</div>"
-        })
-        Vue.component("child2", {
-            template: "<div v-once>child-2</div>"
-        })
+<script>
+    Vue.component("child1", {
+        //v-once可以将内容放到缓存中，而不是销毁再创建，可以提高性能
+        template: "<div v-once>child-1</div>"
+    })
+    Vue.component("child2", {
+        template: "<div v-once>child-2</div>"
+    })
 
-        var vm = new Vue({
-            el: "#app",
-            data() {
-                return {
-                    type: "child1"
-                }
-            },
-            methods: {
-                btnClick() {
-                    this.type = this.type === 'child1' ? 'child2' : "child1"
-                }
-            },
-        });
-    </script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                type: "child1"
+            }
+        },
+        methods: {
+            btnClick() {
+                this.type = this.type === 'child1' ? 'child2' : "child1"
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

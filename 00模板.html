@@ -10,42 +10,38 @@
 </head>
 
 <body>
-    <div id="app">
-        
-        <child></child>
-    </div>
+<div id="app">
 
-    <script>
-        Vue.component("child", {
-            props: [],
-            data() {
-                return {
+    <child></child>
+</div>
 
-                }
-            },
-            template: "<div>模板</div>",
-            methods: {
-                childMethod() {
+<script>
+    Vue.component("child", {
+        props: [],
+        data() {
+            return {}
+        },
+        template: "<div>模板</div>",
+        methods: {
+            childMethod() {
 
-                }
-            },
-        });
+            }
+        },
+    });
 
-        var vm = new Vue({
-            el: "#app",
-            data: {
+    var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            name() {
 
-            },
-            methods: {
-                name() {
+            }
+        },
+        mounted() {
 
-                }
-            },
-            mounted() {
-
-            },
-        })
-    </script>
+        },
+    })
+</script>
 </body>
 
 </html>

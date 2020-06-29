@@ -10,24 +10,24 @@
 </head>
 
 <body>
-    <div id="app">
-        <child>
-            <!-- 作用域插槽 -->
-            <template slot-scope="props">
-                <li>{{props.aaa}}---测试</li>
-            </template>
-        </child>
-    </div>
+<div id="app">
+    <child>
+        <!-- 作用域插槽 -->
+        <template slot-scope="props">
+            <li>{{props.aaa}}---测试</li>
+        </template>
+    </child>
+</div>
 
 
-    <script>
-        Vue.component("child", {
-            data() {
-                return {
-                    list: [1, 2, 3, 4]
-                }
-            },
-            template: `
+<script>
+    Vue.component("child", {
+        data() {
+            return {
+                list: [1, 2, 3, 4]
+            }
+        },
+        template: `
             <div>
                 <ul>
                     <slot v-for="item in list"
@@ -36,13 +36,13 @@
                 </ul>
             </div>
             `
-        });
+    });
 
 
-        var vm = new Vue({
-            el: "#app",
-        });
-    </script>
+    var vm = new Vue({
+        el: "#app",
+    });
+</script>
 </body>
 
 </html>

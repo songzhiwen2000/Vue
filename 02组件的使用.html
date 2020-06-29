@@ -10,45 +10,45 @@
 </head>
 
 <body>
-    <div id="app">
-        <input v-model="data" type="text" />
-        <button @click="changeInfo">提交</button>
-        <ul>
-            <todo-item :content="item" v-for="(item, index) in list" :key="index"></todo-item>
-        </ul>
-    </div>
-    <script>
+<div id="app">
+    <input v-model="data" type="text"/>
+    <button @click="changeInfo">提交</button>
+    <ul>
+        <todo-item :content="item" v-for="(item, index) in list" :key="index"></todo-item>
+    </ul>
+</div>
+<script>
 
-        /* //全局组件
-        Vue.component("TodoItem", {
-            props: ['content'],
-            template: "<li>{{content}}</li>"
-        }); */
+    /* //全局组件
+    Vue.component("TodoItem", {
+        props: ['content'],
+        template: "<li>{{content}}</li>"
+    }); */
 
-        //定义局部组件
-        var TodoItem = {
-            props: ['content'],//组件接收外部数据
-            template: "<li>{{content}}</li>"//定义模板标签
-        };
-        var app = new Vue({
-            el: "#app",
-            components: {//注册局部组件，不注册不能使用
-                TodoItem: TodoItem
-            },
-            data() {
-                return {
-                    list: [],
-                    data: ""
-                }
-            },
-            methods: {
-                changeInfo() {
-                    this.list.push(this.data);
-                    this.data = "";
-                }
-            },
-        });
-    </script>
+    //定义局部组件
+    var TodoItem = {
+        props: ['content'],//组件接收外部数据
+        template: "<li>{{content}}</li>"//定义模板标签
+    };
+    var app = new Vue({
+        el: "#app",
+        components: {//注册局部组件，不注册不能使用
+            TodoItem: TodoItem
+        },
+        data() {
+            return {
+                list: [],
+                data: ""
+            }
+        },
+        methods: {
+            changeInfo() {
+                this.list.push(this.data);
+                this.data = "";
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

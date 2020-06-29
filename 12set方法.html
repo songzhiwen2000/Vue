@@ -10,28 +10,28 @@
 </head>
 
 <body>
-    <div id="app">
-        <div v-for="item in arr">
-            {{ item }}
-        </div>
-        <button @click="changeInfo">变更</button>
+<div id="app">
+    <div v-for="item in arr">
+        {{ item }}
     </div>
+    <button @click="changeInfo">变更</button>
+</div>
 
-    <script>
-        var vm = new Vue({
-            el: "#app",
-            data() {
-                return {
-                    arr: [1, 2, 3, 4]
-                }
-            },
-            methods: {
-                changeInfo() {
-                    this.$set(this.arr, 1, 100);
-                }
-            },
-        });
-    </script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                arr: [1, 2, 3, 4]
+            }
+        },
+        methods: {
+            changeInfo() {
+                this.$set(this.arr, 1, 100);
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

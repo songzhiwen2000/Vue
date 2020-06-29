@@ -15,29 +15,29 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- <div @click="changeColor" :class="[activated]">{{message}}</div> -->
-        <div @click="changeColor" :style="[styleObj,{fontSize:'20px'}]">{{message}}</div>
-    </div>
-    <script>
-        var vm = new Vue({
-            el: "#app",
-            data() {
-                return {
-                    message: "中国",
-                    activated: "",
-                    styleObj: {
-                        color: "red"
-                    }
+<div id="app">
+    <!-- <div @click="changeColor" :class="[activated]">{{message}}</div> -->
+    <div @click="changeColor" :style="[styleObj,{fontSize:'20px'}]">{{message}}</div>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                message: "中国",
+                activated: "",
+                styleObj: {
+                    color: "red"
                 }
-            },
-            methods: {
-                changeColor() {
-                    this.styleObj.color = this.styleObj.color === "red" ? "black" : "red";
-                }
-            },
-        });
-    </script>
+            }
+        },
+        methods: {
+            changeColor() {
+                this.styleObj.color = this.styleObj.color === "red" ? "black" : "red";
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Centos7 mosquitto test</title>
-<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-	<script>
-	    const client = mqtt.connect('ws://218.56.32.14:18083/mqtt', { username: 'test', password: '123456' });
-	    client.on('connect', function () {
-	        client.subscribe('/dfe/status/+')
-	        console.log("connected…")
-	    })
-	    client.on("message", function (topic, payload) {
-	    	console.log(topic);
+    <meta charset="utf-8">
+    <title>Centos7 mosquitto test</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script>
+        const client = mqtt.connect('ws://218.56.32.14:18083/mqtt', {username: 'test', password: '123456'});
+        client.on('connect', function () {
+            client.subscribe('/dfe/status/+')
+            console.log("connected…")
+        })
+        client.on("message", function (topic, payload) {
+            console.log(topic);
             console.log(payload.toString());
-	        alert(window.atob(payload));
-	        console.log("waiting ");
-	    })
-	</script>
+            alert(window.atob(payload));
+            console.log("waiting ");
+        })
+    </script>
 
 </head>
- 
+
 <body>
 
 </body>

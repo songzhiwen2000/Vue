@@ -10,32 +10,32 @@
 </head>
 
 <body>
+<div id="app">
+    <!-- <div v-if="show==0">A{{message}}</div>
+    <div v-else-if="show==1">B{{message}}</div>
+    <div v-else>C{{message}}</div> -->
+    <!-- <div v-show="show">B{{message}}</div> -->
     <div id="app">
-        <!-- <div v-if="show==0">A{{message}}</div>
-        <div v-else-if="show==1">B{{message}}</div>
-        <div v-else>C{{message}}</div> -->
-        <!-- <div v-show="show">B{{message}}</div> -->
-        <div id="app">
-            <div v-if="show==1">
-                <!--key是防止表单中的数据缓存-->
-                用户名：<input type="text" key="user">
-            </div>
-            <div v-else>
-                邮箱名：<input type="text" key="email">
-            </div>
+        <div v-if="show==1">
+            <!--key是防止表单中的数据缓存-->
+            用户名：<input type="text" key="user">
+        </div>
+        <div v-else>
+            邮箱名：<input type="text" key="email">
         </div>
     </div>
-    <script>
-        var vm = new Vue({
-            el: "#app",
-            data() {
-                return {
-                    show: 0,
-                    message: "中国"
-                }
-            },
-        });
-    </script>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                show: 0,
+                message: "中国"
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

@@ -38,51 +38,49 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- <transition name="fade" enter-active-class="enter" leave-active-class="leave">
-            <div v-show="show">显示和隐藏</div>
-        </transition> -->
+<div id="app">
+    <!-- <transition name="fade" enter-active-class="enter" leave-active-class="leave">
+        <div v-show="show">显示和隐藏</div>
+    </transition> -->
 
 
-        <!-- 使用animate.css库，必须自定义样式，第一个必须写animated，然后追加其他样式 -->
-        <transition name="fade" enter-active-class="animated swing" leave-active-class="animated shake">
-            <div v-show="show">显示和隐藏</div>
-        </transition>
+    <!-- 使用animate.css库，必须自定义样式，第一个必须写animated，然后追加其他样式 -->
+    <transition name="fade" enter-active-class="animated swing" leave-active-class="animated shake">
+        <div v-show="show">显示和隐藏</div>
+    </transition>
 
-        <button @click="handleClick">点击</button>
-    </div>
+    <button @click="handleClick">点击</button>
+</div>
 
-    <script>
-        Vue.component("child", {
-            props: [],
-            data() {
-                return {
+<script>
+    Vue.component("child", {
+        props: [],
+        data() {
+            return {}
+        },
+        template: "<div>模板</div>",
+        methods: {
+            childMethod() {
 
-                }
-            },
-            template: "<div>模板</div>",
-            methods: {
-                childMethod() {
+            }
+        },
+    })
 
-                }
-            },
-        })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick() {
+                this.show = !this.show
+            }
+        },
+        mounted() {
 
-        var vm = new Vue({
-            el: "#app",
-            data: {
-                show: true
-            },
-            methods: {
-                handleClick() {
-                    this.show = !this.show
-                }
-            },
-            mounted() {
-
-            },
-        })
-    </script>
+        },
+    })
+</script>
 </body>
 
 </html>

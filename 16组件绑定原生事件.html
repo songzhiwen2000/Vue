@@ -10,28 +10,28 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- 在事件后，加上 .native 修饰符就可以直接触发原生事件，而非自定义事件 -->
-        <child @click.native="ccc"></child>
-    </div>
+<div id="app">
+    <!-- 在事件后，加上 .native 修饰符就可以直接触发原生事件，而非自定义事件 -->
+    <child @click.native="ccc"></child>
+</div>
 
 
-    <script>
-        var child = {
-            template: "<div @click='childClick'>Child</div>",
-        }
-        var vm = new Vue({
-            el: "#app",
-            components: {
-                child: child,
-            },
-            methods: {
-                ccc() {
-                    alert("父组件被点击");
-                }
-            },
-        });
-    </script>
+<script>
+    var child = {
+        template: "<div @click='childClick'>Child</div>",
+    }
+    var vm = new Vue({
+        el: "#app",
+        components: {
+            child: child,
+        },
+        methods: {
+            ccc() {
+                alert("父组件被点击");
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

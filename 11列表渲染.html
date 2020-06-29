@@ -10,42 +10,42 @@
 </head>
 
 <body>
-    <div id="app">
-        <template v-for="(item, index) in list" ::key="item.id">
-            <div>{{item.name}}----{{index}}</div>
-            <span>{{item.name}}</span>
-        </template>
-        <hr>
-        <template v-for="item in userInfo">
-            <div>{{item}}</div>
-        </template>
-        <hr>
-        <template v-for="(item,key,index) in userInfo">
-            <div>
-                {{item}}---{{key}}---{{index}}
-            </div>
-        </template>
-    </div>
+<div id="app">
+    <template v-for="(item, index) in list" ::key="item.id">
+        <div>{{item.name}}----{{index}}</div>
+        <span>{{item.name}}</span>
+    </template>
+    <hr>
+    <template v-for="item in userInfo">
+        <div>{{item}}</div>
+    </template>
+    <hr>
+    <template v-for="(item,key,index) in userInfo">
+        <div>
+            {{item}}---{{key}}---{{index}}
+        </div>
+    </template>
+</div>
 
-    <script>
-        var vm = new Vue({
-            el: "#app",
-            data() {
-                return {
-                    list: [
-                        {id: "001", name: "张三"},
-                        {id: "002", name: "李四"},
-                        {id: "003", name: "王五"},
-                    ],
-                    userInfo: {
-                        name: "张三",
-                        age: 20,
-                        gender: "male"
-                    }
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                list: [
+                    {id: "001", name: "张三"},
+                    {id: "002", name: "李四"},
+                    {id: "003", name: "王五"},
+                ],
+                userInfo: {
+                    name: "张三",
+                    age: 20,
+                    gender: "male"
                 }
-            },
-        });
-    </script>
+            }
+        },
+    });
+</script>
 </body>
 
 </html>

@@ -13,54 +13,54 @@
 </head>
 
 <body>
-    <div id="app">
-        <input v-model="data" type="text" />
-        <button @click="changeInfo">提交</button>
-        <ul>
-            <todo-item :content="item" @delete="handleDelete" v-for="(item, index) in list" :key="index" :index="index">
-            </todo-item>
-        </ul>
-    </div>
-    <script>
+<div id="app">
+    <input v-model="data" type="text"/>
+    <button @click="changeInfo">提交</button>
+    <ul>
+        <todo-item :content="item" @delete="handleDelete" v-for="(item, index) in list" :key="index" :index="index">
+        </todo-item>
+    </ul>
+</div>
+<script>
 
-        /* //全局组件
-        Vue.component("TodoItem", {
-            props: ['content'],
-            template: "<li>{{content}}</li>"
-        }); */
+    /* //全局组件
+    Vue.component("TodoItem", {
+        props: ['content'],
+        template: "<li>{{content}}</li>"
+    }); */
 
-        //定义局部组件
-        var TodoItem = {
-            props: ['content', 'index'],//组件接收外部数据
-            template: "<li @click='deleteItem'>{{content}}</li>",//定义模板标签
-            methods: {
-                deleteItem() {
-                    this.$emit('delete', this.index);
-                }
+    //定义局部组件
+    var TodoItem = {
+        props: ['content', 'index'],//组件接收外部数据
+        template: "<li @click='deleteItem'>{{content}}</li>",//定义模板标签
+        methods: {
+            deleteItem() {
+                this.$emit('delete', this.index);
+            }
+        },
+    };
+    var app = new Vue({
+        el: "#app",
+        components: {//注册局部组件，不注册不能使用
+            TodoItem: TodoItem
+        },
+        data() {
+            return {
+                list: [],
+                data: ""
+            }
+        },
+        methods: {
+            changeInfo() {
+                this.list.push(this.data);
+                this.data = "";
             },
-        };
-        var app = new Vue({
-            el: "#app",
-            components: {//注册局部组件，不注册不能使用
-                TodoItem: TodoItem
-            },
-            data() {
-                return {
-                    list: [],
-                    data: ""
-                }
-            },
-            methods: {
-                changeInfo() {
-                    this.list.push(this.data);
-                    this.data = "";
-                },
-                handleDelete(index) {
-                    this.list.splice(index, 1);
-                }
-            },
-        });
-    </script>
+            handleDelete(index) {
+                this.list.splice(index, 1);
+            }
+        },
+    });
+</script>
 </body>
 
 </html>
